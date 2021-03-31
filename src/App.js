@@ -1,17 +1,20 @@
 
+
 import { useEffect, useState } from 'react';
 import './App.css';
+import Comments from './components/Comments/Comments';
 import Posts from './components/Posts/Posts';
-import Coments from './components/Comments/Comments'
 function App() {
-  const [message, setMessage] = useState("Hello");
+  const [selectedPost, setSelectedPost] = useState(0);
   console.log("[App.js] render");
   return (
     <div className="App">
-      {message}
-      <button onClick={() => setMessage("Bye")}>Toggle</button>
-      <Posts message={message} />
+      {/* <button onClick={() => setMessage("Bye")}>Toggle</button> */}
+      <Posts setSelectedPost={setSelectedPost} />
+      {selectedPost}
     </div>
   );
 }
 export default App;
+
+
