@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import classes from "./Posts.module.css";
+import classes from './Posts.module.css';
 const Posts = ({ message }) => {
   const [posts, setPosts] = useState([]);
   console.log("[Posts.js] render");
