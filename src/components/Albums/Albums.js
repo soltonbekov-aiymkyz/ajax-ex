@@ -1,34 +1,4 @@
-
-// import axios from 'axios';
-// import { useEffect, useState } from 'react';
-// import classes from "./Albums.module.css";
-// const Albums = ({ setSelectedAlbums }) => {
-//     const [albums, setAlbums] = useState({
-//         title: "Loading...",
-
-//     });
-//     useEffect(() => {
-//         axios.get('https://jsonplaceholder.typicode.com/posts')
-//             .then((response) => {
-//                 const albums = response.data;
-//                 const only5posts = posts.slice(0, 5);
-//                 setAlbums(only5posts);
-//             });
-//     }, []);
-
-
-
-//     return (
-//         <div className={classes.Posts}>
-//             {results.length > 0 ? results : "Loading..."}
-//         </div>
-//     );
-// }
-// export default Posts;
-
-
-
-
+/*
 import axios from "axios";
 
 import { useEffect, useState } from "react";
@@ -55,4 +25,38 @@ const Albums = ({ setSelectedAlbums }) =>{
     </div>
   );
   }
+export default Albums;
+
+
+*/
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import classes from "./Albums.module.css";
+
+
+const Albums = ({ setSelectedAlbum }) => {
+  const [albums, setAlbums] = useState([ ]);
+
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/albums')
+      .then((response) => {
+        const albums = response.data;
+        setAlbums(albums);
+      });
+  }, []);
+
+  const result = albums.map((album) =>(
+      <div key={album.id} onClick={() => setSelectedAlbum(album.id)}>
+          <h2>{album.title}</h2>
+      </div>
+  ) )
+
+
+  return (
+    <div className={classes.Albums}>
+      {result}
+    </div>
+  );
+}
 export default Albums;
