@@ -1,31 +1,29 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import classes from './Comments.module.css';
-const Comments = ({ message }) => {
-  const [comments, setComents] = useState([]);
-  console.log("[Comments.js] render");
+import classes from "./Comments.module.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-  useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/comments')
-      .then((response) => {
-      const comments =response.data;
-      const only10posts = comentss.slice(0,10)
-      setComments(only10posts)
-      });
-  }, []);
-  
-  const results = comments.map((comment)=>(
-   <span key={comment.id}>
-     <h2>{comments.name}</h2>
-      <p>{comments.id}</p>
-   </span>
-  ))
+const Comments = () => {
 
+    const [comments, setComments] = useState([]);
 
-  return (
-    <div className={classes.Commentss}>
-    {results.length > 0 ? results : "Loading..."}
-    </div>
-  );
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/comments')
+          .then((response) => {
+            setComments(response.data.slice(0, 10));
+          });
+      }, []);
+    
+      const results = comments.map((comment) => (
+        <article key = {comment.id}>
+            <h2>{comment.name}</h2>
+            <p>{comment.body}</p>
+        </article>
+      ))
+    return ( 
+        <div className = {classes.Comments}>
+            {results}
+        </div>
+    );
 }
+ 
 export default Comments;
