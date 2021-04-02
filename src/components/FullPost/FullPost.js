@@ -9,7 +9,6 @@ const FullPost = ({ id }) => {
     title: "Loading...",
     body: "Wait for it!",
     userId:0
-
   });
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
